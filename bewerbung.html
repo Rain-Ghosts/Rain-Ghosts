@@ -71,13 +71,71 @@
     </form>
   </section>
 </main>
+```html
 <script>
-document.getElementById('applicationForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('formMessage').classList.add('show');
-  this.reset();
-});
+  document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const button = form.querySelector('button[type="submit"]');
+    const message = document.getElementById('formMessage');
+
+    // Button während des Versands deaktivieren
+    button.disabled = true;
+    button.textContent = 'Wird gesendet ...';
+
+    // Formulardaten auslesen
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get('name'),
+      age: formData.get('age'),
+      player: formData.get('player'),
+      server: formData.get('server'),
+      discord: formData.get('discord'),
+      contact: formData.get('contact'),
+      about: formData.get('about'),
+      why: formData.get('why'),
+      activity: formData.get('activity')
+    };
+
+    try {
+      const response = await fetch('/api/send-application', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Die Bewerbung konnte nicht gesendet werden.');
+      }
+
+      // Erfolg anzeigen
+      message.textContent = 'Danke für deine Bewerbung! 🎉 Deine Bewerbung wurde erfolgreich gesendet.';
+      message.classList.add('show');
+
+      // Formular leeren
+      form.reset();
+
+    } catch (error) {
+      console.error(error);
+
+      // Fehler anzeigen
+      message.textContent = 'Die Bewerbung konnte leider nicht gesendet werden. Bitte versuche es später erneut.';
+      message.classList.add('show');
+    }
+
+    // Button wieder aktivieren
+    button.disabled = false;
+    button.textContent = 'Bewerbung absenden →';
+  });
 </script>
+```
+
 <footer class="footer">
   <div class="socials">
     <a href="#" aria-label="Instagram">◎</a>
