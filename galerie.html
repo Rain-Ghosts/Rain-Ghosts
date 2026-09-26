@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galerie | Rain Ghosts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.gallery-full .gallery-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-full .gallery-tile > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-full .gallery-tile > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 12px;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
+}
+</style>
+
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Rain Ghosts Startseite">
+    <span class="brand-logo"><img src="assets/logo.png" alt="Rain Ghosts Logo"></span>
+    <span class="brand-text">
+      <strong>Rain Ghosts</strong>
+      <small>✦ STAR STABLE CLUB ✦</small>
+    </span>
+  </a>
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a href="index.html">Home</a>
+    <a href="ueber-uns.html">Über uns</a>
+    <a href="club.html">Der Club</a>
+    <a href="aktuelles.html">Aktuelles</a>
+    <a href="galerie.html" class="active">Galerie</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <a class="join-button" href="bewerbung.html"><span>♞</span> Jetzt beitreten</a>
+  <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
+</header>
+<section class="subpage-hero">
+  <!-- HEADER-BILD: Ersetze assets/header.jpg durch dein gewünschtes Bild -->
+  <div class="header-image" aria-hidden="true">
+    <img src="assets/headeralll.png" alt="">
+  </div>
+  <div>
+    <p class="section-kicker">UNSERE SCHÖNSTEN MOMENTE</p>
+    <h1>Galerie</h1>
+    <p>Ein kleiner Einblick in unsere Abenteuer auf Jorvik.</p>
+  </div>
+</section>
+
+<main class="page-container">
+  <div class="gallery-full">
+    <div class="gallery-tile large">
+      <img src="assets/logo.png" alt="Club Logo">
+      <span>Rain Ghosts</span>
+    </div>
+
+    <div class="gallery-tile scene scene-1">
+      <img src="assets/header.png" alt="Gemeinsame Ausritte">
+      <span>Herz für euch</span>
+    </div>
+
+    <div class="gallery-tile scene scene-2">
+      <img src="assets/clubheader.png" alt="Club Events">
+      <span>Championate Zusammen</span>
+    </div>
+
+    <div class="gallery-tile scene scene-3">
+      <img src="assets/abenteuer.jpg" alt="Abenteuer">
+      <span>Abenteuer</span>
+    </div>
+
+    <div class="gallery-tile scene scene-1">
+      <img src="assets/jorvik-nacht.jpg" alt="Jorvik bei Nacht">
+      <span>Jorvik bei Nacht</span>
+    </div>
+
+    <div class="gallery-tile scene scene-2">
+      <img src="assets/pferde.jpg" alt="Unsere Pferde">
+      <span>Unsere Pferde</span>
+    </div>
+
+    <div class="gallery-tile scene scene-3">
+      <img src="assets/turniertage.jpg" alt="Turniertage">
+      <span>Turniertage</span>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="socials">
+    <a href="#" aria-label="Instagram">◎</a>
+    <a href="#" aria-label="Discord">◉</a>
+    <a href="#" aria-label="YouTube">▶</a>
+    <a href="#" aria-label="TikTok">♪</a>
+  </div>
+  <div class="footer-mark"><img src="assets/logo.png" alt=""></div>
+  <p class="quote">“Together we ride,<br>stronger we are.”</p>
+  <p class="copyright">© 2026 Rain Ghosts · Star Stable Club</p>
+</footer>
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+</body>
+</html>

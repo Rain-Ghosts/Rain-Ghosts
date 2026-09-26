@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktuelles | Rain Ghosts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Rain Ghosts Startseite">
+    <span class="brand-logo"><img src="assets/logo.png" alt="Rain Ghosts Logo"></span>
+    <span class="brand-text">
+      <strong>Rain Ghosts</strong>
+      <small>✦ STAR STABLE CLUB ✦</small>
+    </span>
+  </a>
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a href="index.html">Home</a>
+    <a href="ueber-uns.html">Über uns</a>
+    <a href="club.html">Der Club</a>
+    <a href="aktuelles.html" class="active">Aktuelles</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <a class="join-button" href="bewerbung.html"><span>♞</span> Jetzt beitreten</a>
+  <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
+</header>
+<section class="subpage-hero">
+  <!-- HEADER-BILD: Ersetze assets/header.jpg durch dein gewünschtes Bild -->
+  <div class="header-image" aria-hidden="true">
+    <img src="assets/headeralll.png" alt="">
+  </div>
+  <div>
+    <p class="section-kicker">NEWS & UPDATES</p>
+    <h1>Aktuelles</h1>
+    <p>Neuigkeiten, Ankündigungen und besondere Momente aus unserem Club.</p>
+  </div>
+</section>
+
+<main class="page-container">
+  <div class="news-grid">
+    <article class="article-card">
+      <div class="article-icon">✦</div><span class="date">27. September 2026</span>
+      <h3>Erstes Clubtreffen</h3>
+      <p>....................</p>
+    </article>
+    <article class="article-card">
+      <div class="article-icon">✦</div><span class="date">19. September 2026</span>
+      <h3>Club Gründung</h3>
+      <p>Wir starten gemeinsam in ein neues Kapitel.</p>
+    </article>
+    
+  </div>
+</main>
+<footer class="footer">
+  <div class="socials">
+    <a href="#" aria-label="Instagram">◎</a>
+    <a href="#" aria-label="Discord">◉</a>
+    <a href="#" aria-label="YouTube">▶</a>
+    <a href="#" aria-label="TikTok">♪</a>
+  </div>
+  <div class="footer-mark"><img src="assets/logo.png" alt=""></div>
+  <p class="quote">“Together we ride,<br>stronger we are.”</p>
+  <p class="copyright">© 2026 Rain Ghosts · Star Stable Club</p>
+</footer>
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+</body>
+</html>

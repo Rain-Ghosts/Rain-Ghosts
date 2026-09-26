@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewerbung | Rain Ghosts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="Rain Ghosts Startseite">
+    <span class="brand-logo"><img src="assets/logo.png" alt="Rain Ghosts Logo"></span>
+    <span class="brand-text">
+      <strong>Rain Ghosts</strong>
+      <small>✦ STAR STABLE CLUB ✦</small>
+    </span>
+  </a>
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a href="index.html">Home</a>
+    <a href="ueber-uns.html">Über uns</a>
+    <a href="club.html">Der Club</a>
+    <a href="aktuelles.html">Aktuelles</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <a class="join-button" href="bewerbung.html"><span>♞</span> Jetzt beitreten</a>
+  <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
+</header>
+<section class="subpage-hero">
+  <!-- HEADER-BILD: Ersetze assets/header.jpg durch dein gewünschtes Bild -->
+  <div class="header-image" aria-hidden="true">
+    <img src="assets/headeralll.png" alt="">
+  </div>
+  <div>
+    <p class="section-kicker">WERDE TEIL DER HERDE</p>
+    <h1>Club-Bewerbung</h1>
+    <p>Erzähl uns etwas über dich und bewirb dich direkt online bei Rain Ghosts.</p>
+  </div>
+</section>
+
+<main class="page-container application">
+  <div class="intro">
+    <p class="section-kicker">DEIN NÄCHSTES ABENTEUER</p>
+    <h2>Bewirb dich bei Rain Ghosts</h2>
+    <p style="color:#9eb9cd;font-size:12px;line-height:1.8">Nimm dir ein paar Minuten Zeit und erzähl uns etwas über dich. Wir lesen jede Bewerbung persönlich.</p>
+  </div>
+
+  <section class="page-card">
+    <form class="application-form" id="applicationForm">
+      <div class="form-row">
+        <div class="field"><label for="name">DEIN NAME / SPITZNAME *</label><input id="name" name="name" required placeholder="z. B. Luna"></div>
+        <div class="field"><label for="age">LEVEL *</label><input id="age" name="age" type="number" min="1" max="99" required placeholder="z. B. 16"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="player">STAR-STABLE-NAME</label><input id="player" name="player" placeholder="Dein Ingame-Name"></div>
+        <div class="field"><label for="server">SERVER</label><input id="server" name="server" placeholder="Dein Server"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="discord">DISCORD-NAME *</label><input id="discord" name="discord" required placeholder="name"></div>
+        <div class="field"><label for="contact">KONTAKTWEG</label><select id="contact" name="contact"><option>Discord</option><option>E-Mail</option><option>Instagram</option></select></div>
+      </div>
+      <div class="field"><label for="about">ERZÄHL UNS ETWAS ÜBER DICH *</label><textarea id="about" name="about" required placeholder="Wer bist du, was machst du gerne in Star Stable und was erwartest du von unserem Club?"></textarea></div>
+      <div class="field"><label for="why">WARUM RAIN GHOSTS?</label><textarea id="why" name="why" placeholder="Was hat dich an unserem Club angesprochen?"></textarea></div>
+      <div class="field"><label for="activity">WIE AKTIV BIST DU?</label><select id="activity" name="activity"><option>Mehrmals pro Woche</option><option>Einmal pro Woche</option><option>Unregelmäßig</option><option>Nur an Events</option></select></div>
+      <label class="check-row"><input type="checkbox" required> Ich bestätige, dass meine Angaben korrekt sind und akzeptiere die Clubregeln.</label>
+      <button class="button primary" type="submit">Bewerbung absenden →</button>
+      <div class="form-message" id="formMessage">Danke für deine Bewerbung! 🎉 In einer echten Version wird diese hier an euer Bewerbungs-System oder Discord weitergeleitet.</div>
+    </form>
+  </section>
+</main>
+<script>
+document.getElementById('applicationForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.getElementById('formMessage').classList.add('show');
+  this.reset();
+});
+</script>
+<footer class="footer">
+  <div class="socials">
+    <a href="#" aria-label="Instagram">◎</a>
+    <a href="#" aria-label="Discord">◉</a>
+    <a href="#" aria-label="YouTube">▶</a>
+    <a href="#" aria-label="TikTok">♪</a>
+  </div>
+  <div class="footer-mark"><img src="assets/logo.png" alt=""></div>
+  <p class="quote">“Together we ride,<br>stronger we are.”</p>
+  <p class="copyright">© 2026 Rain Ghosts · Star Stable Club</p>
+</footer>
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+</body>
+</html>

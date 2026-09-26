@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Der Club | Rain Ghosts</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .club-outfit-section {
+      margin-top: 34px;
+    }
+
+    .club-outfit-section .info-list {
+      margin-top: 16px;
+    }
+
+    .club-outfit-section .page-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .outfit-visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin: 22px 0;
+    }
+
+    .outfit-visual {
+      margin: 0;
+      border: 1px solid rgba(158, 207, 255, 0.35);
+      background: rgba(10, 31, 56, 0.55);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .outfit-visual img {
+      display: block;
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .outfit-visual figcaption {
+      padding: 13px 16px;
+      color: #edf6ff;
+      font-family: Cinzel, serif;
+    }
+
+    .outfit-columns {
+      margin-top: 22px;
+    }
+
+    .outfit-note {
+      text-align: center;
+      margin-top: 22px;
+    }
+
+    .outfit-note .script-line {
+      margin: 0;
+    }
+
+    @media (max-width: 760px) {
+      .outfit-visual-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .outfit-visual img {
+        height: auto;
+      }
+
+      .outfit-columns {
+        display: block;
+      }
+
+      .outfit-columns .page-card + .page-card {
+        margin-top: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+
+    <a class="brand" href="index.html" aria-label="Rain Ghosts Startseite">
+      <span class="brand-logo">
+        <img src="assets/logo.png" alt="Rain Ghosts Logo">
+      </span>
+
+      <span class="brand-text">
+        <strong>Rain Ghosts</strong>
+        <small>✦ STAR STABLE CLUB ✦</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="index.html">Home</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="club.html" class="active">Der Club</a>
+      <a href="aktuelles.html">Aktuelles</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <a class="join-button" href="bewerbung.html">
+      <span>♞</span> Jetzt beitreten
+    </a>
+
+    <button class="menu-toggle" aria-label="Menü öffnen">
+      ☰
+    </button>
+
+  </header>
+
+
+  <!-- HERO -->
+  <section class="subpage-hero">
+  <!-- HEADER-BILD: Ersetze assets/header.jpg durch dein gewünschtes Bild -->
+  <div class="header-image" aria-hidden="true">
+    <img src="assets/headerall.png" alt="">
+  </div>
+    <div>
+      <p class="section-kicker">DAS HERZ VON RAIN GHOSTS</p>
+
+      <h1>Unser Club</h1>
+
+      <p>
+        Alles über unser Clubleben, unsere Aktivitäten und unser Miteinander.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- INHALT -->
+  <main class="page-container">
+
+    <!-- CLUBLEBEN + REGELN -->
+    <div class="two-column">
+
+      <!-- CLUBLEBEN -->
+      <section class="page-card">
+
+        <p class="section-kicker">DAS CLUBLEBEN</p>
+
+        <h2>Was dich erwartet</h2>
+
+        <p>
+          Bei Rain Ghosts geht es nicht darum, immer den 1. Platz zu machen.
+          Es geht darum, gemeinsam eine schöne Zeit zu haben.
+        </p>
+
+        <h3>Unsere Aktivitäten</h3>
+
+        <ul>
+          <li>1 Wöchentliches Clubtreffen</li>
+          <li>Foto-Sessions</li>
+          <li>Championate</li>
+          <li>Champions Challenges</li>
+        </ul>
+
+        <h3>Unsere Werte</h3>
+
+        <p>
+          Wir wünschen uns Offenheit, Zuverlässigkeit, Respekt und eine
+          entspannte Atmosphäre. Niemand muss perfekt sein, jede Person
+          soll sich willkommen fühlen.
+        </p>
+
+      </section>
+
+
+      <!-- REGELN -->
+      <aside class="page-card">
+
+        <p class="section-kicker">REGELN</p>
+
+        <h2>Unser Miteinander</h2>
+
+        <div class="info-list">
+
+          <div>
+            <strong>01 · RESPEKT</strong>
+            <span>
+              Behandle andere so, wie du selbst behandelt werden möchtest.
+            </span>
+          </div>
+
+          <div>
+            <strong>02 · AKTIVITÄT</strong>
+            <span>
+              Informiere das Team, wenn du längere Zeit nicht teilnehmen kannst.
+            </span>
+          </div>
+
+          <div>
+            <strong>03 · TEAMWORK</strong>
+            <span>
+              Alles funktioniert am besten, wenn wir uns gegenseitig unterstützen.
+            </span>
+          </div>
+
+          <div>
+            <strong>04 · SPASS</strong>
+            <span>
+              Das Clubleben soll Freude machen, kein zusätzlicher Stress sein.
+            </span>
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+
+    <!-- CLUBPFERD & OUTFIT -->
+    <section class="club-outfit-section">
+
+      <p class="section-kicker">UNSER GEMEINSAMER LOOK</p>
+
+      <h2>Clubpferd &amp; Club Outfit</h2>
+
+      <p>
+        Unser Clubpferd ist der weiße Isländer der Generation 3.
+        Dazu gehört unser gemeinsamer Club-Look.
+      </p>
+
+
+      <!-- BILDER -->
+      <div class="outfit-visual-grid">
+
+        <figure class="outfit-visual">
+
+          <img
+            src="assets/Clubpferd.JPG"
+            alt="Weißer Gen-3-Isländer als Clubpferd"
+          >
+
+          <figcaption>
+            Unser Clubpferd
+          </figcaption>
+
+        </figure>
+
+
+        <figure class="outfit-visual">
+
+          <img
+            src="assets/CO.JPG"
+            alt="Reiter im Club Outfit"
+          >
+
+          <figcaption>
+            Reiter Outfit
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+
+      <!-- OUTFIT INFORMATIONEN -->
+      <div class="two-column outfit-columns">
+
+        <!-- REITER -->
+        <section class="page-card">
+
+          <p class="section-kicker">REITER</p>
+
+          <h2>Club Outfit</h2>
+
+          <div class="info-list">
+
+            <div>
+              <strong>JACKE</strong>
+              <span>
+                „Herbstsammlerin“ · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>CONCORDE-HORSE</strong>
+              <span>
+                Shop neben Frau Drake in Jarlaheim
+              </span>
+            </div>
+
+            <div>
+              <strong>HANDSCHUHE</strong>
+              <span>
+                „Snowmanship“ · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>STIEFEL</strong>
+              <span>
+                Schwarze Winter Stiefel · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>HUT</strong>
+              <span>
+                Barett in einer Farbe deiner Wahl
+              </span>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- PFERD -->
+        <section class="page-card">
+
+          <p class="section-kicker">PFERD</p>
+
+          <h2>Pferdeausrüstung</h2>
+
+          <div class="info-list">
+
+            <div>
+              <strong>SATTELDECKE</strong>
+              <span>
+                Triumphale marineblaue Springsatteldecke · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>GAMASCHEN</strong>
+              <span>
+                „Pracht in Königsblau“ · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>ZAUMZEUG</strong>
+              <span>
+                „Fort Pinta-Championat“ · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>SATTEL</strong>
+              <span>
+                „Fort Pinta-Championat“ · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>SCHWEIF</strong>
+              <span>
+                Schwarze Onyx-Schweifschleife · Global Shop
+              </span>
+            </div>
+
+            <div>
+              <strong>SCHLEIFE</strong>
+              <span>
+                Schleife in schwarzem Onyx · Global Shop
+              </span>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <!-- ABSCHLUSS -->
+      <div class="page-card outfit-note">
+
+        <p class="script-line">
+          Danke, dass ihr Teil der Familie seid! Wir hoffen auf noch ganz
+          viele weitere gemeinsame Erinnerungen mit euch. &lt;33
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- UNTERNAVIGATION -->
+    <div class="subnav">
+
+      <a href="bewerbung.html">
+        Bewerbung starten
+      </a>
+
+      <a href="faq.html">
+        FAQ lesen
+      </a>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="socials">
+
+      <a href="#" aria-label="Instagram">◎</a>
+      <a href="#" aria-label="Discord">◉</a>
+      <a href="#" aria-label="YouTube">▶</a>
+      <a href="#" aria-label="TikTok">♪</a>
+
+    </div>
+
+
+    <div class="footer-mark">
+      <img src="assets/logo.png" alt="">
+    </div>
+
+
+    <p class="quote">
+      “Together we ride,<br>
+      stronger we are.”
+    </p>
+
+
+    <p class="copyright">
+      © 2026 Rain Ghosts · Star Stable Club
+    </p>
+
+  </footer>
+
+
+  <!-- MOBILE MENÜ -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        nav.classList.toggle('open');
+      });
+    }
+
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
