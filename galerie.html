@@ -1,105 +1,1018 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Galerie | Rain Ghosts</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="styles.css">
+
 <style>
-.gallery-full .gallery-tile {
-  position: relative;
-  overflow: hidden;
+/* =========================================================
+   RAIN GHOSTS — GALERIE SLIDESHOW
+   ========================================================= */
+
+.gallery-page {
+  padding: 30px 0 80px;
 }
 
-.gallery-full .gallery-tile > img {
+/* Intro */
+.gallery-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 32px;
+}
+
+.gallery-intro h2 {
+  margin: 0 0 12px;
+  font: 400 clamp(32px, 5vw, 52px) var(--script);
+  color: var(--ice-bright);
+  text-shadow: 0 0 25px rgba(130, 200, 255, .25);
+}
+
+.gallery-intro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Slideshow */
+.gallery-slider {
+  position: relative;
+  width: 100%;
+  height: min(70vh, 720px);
+  min-height: 460px;
+  overflow: hidden;
+  border: 1px solid rgba(166, 213, 255, .25);
+  border-radius: 24px;
+  background: #030b14;
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, .45),
+    0 0 60px rgba(91, 168, 232, .08);
+  isolation: isolate;
+}
+
+/* Ambient glow */
+.gallery-slider::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(117, 190, 255, .12), transparent 25%),
+    radial-gradient(circle at 75% 70%, rgba(80, 130, 220, .12), transparent 30%);
+  filter: blur(40px);
+}
+
+/* Slides */
+.gallery-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.04);
+  transition:
+    opacity .9s ease,
+    transform 1.2s cubic-bezier(.2,.7,.2,1),
+    visibility .9s;
+}
+
+.gallery-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.gallery-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: saturate(.9) brightness(.78);
 }
 
-.gallery-full .gallery-tile > span {
+/* Ken Burns effect */
+.gallery-slide.active img {
+  animation: galleryZoom 8s ease-out forwards;
+}
+
+@keyframes galleryZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+/* Image overlay */
+.gallery-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 10, 19, .82) 0%,
+      rgba(2, 10, 19, .35) 45%,
+      rgba(2, 10, 19, .05) 75%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(2, 10, 19, .8) 0%,
+      transparent 40%
+    );
+}
+
+/* Slide text */
+.gallery-caption {
+  position: absolute;
+  z-index: 5;
+  left: clamp(25px, 6vw, 80px);
+  bottom: clamp(70px, 10vw, 110px);
+  max-width: 560px;
+}
+
+.gallery-caption .kicker {
+  margin: 0 0 12px;
+  color: #b8ddf8;
+  font: 500 9px var(--serif);
+  letter-spacing: 4px;
+}
+
+.gallery-caption h2 {
+  margin: 0;
+  font: 400 clamp(42px, 7vw, 82px)/.95 var(--script);
+  color: #edf8ff;
+  text-shadow:
+    0 0 20px rgba(128, 201, 255, .35),
+    0 5px 30px rgba(0,0,0,.45);
+}
+
+.gallery-caption p {
+  margin: 18px 0 0;
+  color: #c4d7e8;
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 430px;
+}
+
+/* Navigation arrows */
+.gallery-arrow {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(184, 224, 255, .35);
+  border-radius: 50%;
+
+  background: rgba(5, 20, 36, .48);
+  backdrop-filter: blur(12px);
+
+  color: #eaf7ff;
+  font-size: 25px;
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.gallery-arrow:hover {
+  background: rgba(82, 153, 211, .25);
+  border-color: rgba(190, 230, 255, .7);
+  box-shadow:
+    0 0 25px rgba(100, 190, 255, .2);
+}
+
+.gallery-arrow:active {
+  transform: translateY(-50%) scale(.92);
+}
+
+.gallery-arrow.prev {
+  left: 22px;
+}
+
+.gallery-arrow.next {
+  right: 22px;
+}
+
+/* Bottom controls */
+.gallery-controls {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: 25px;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 9px 14px;
+
+  border: 1px solid rgba(180, 220, 255, .2);
+  border-radius: 999px;
+
+  background: rgba(3, 15, 28, .48);
+  backdrop-filter: blur(14px);
+}
+
+.gallery-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(210, 235, 255, .4);
+
+  cursor: pointer;
+
+  transition:
+    width .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.gallery-dot.active {
+  width: 24px;
+  border-radius: 999px;
+  background: #dff4ff;
+  box-shadow: 0 0 12px rgba(151, 216, 255, .7);
+}
+
+/* Counter */
+.gallery-counter {
+  position: absolute;
+  z-index: 10;
+  top: 24px;
+  right: 25px;
+
+  padding: 8px 13px;
+
+  border: 1px solid rgba(180, 220, 255, .2);
+  border-radius: 999px;
+
+  background: rgba(3, 15, 28, .42);
+  backdrop-filter: blur(12px);
+
+  color: #d9edfb;
+  font: 500 10px var(--serif);
+  letter-spacing: 2px;
+}
+
+/* Progress bar */
+.gallery-progress {
+  position: absolute;
+  z-index: 11;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: rgba(200, 230, 255, .1);
+}
+
+.gallery-progress-bar {
+  width: 0;
+  height: 100%;
+  background: rgba(205, 237, 255, .9);
+  box-shadow: 0 0 12px rgba(150, 215, 255, .7);
+}
+
+/* Thumbnail row */
+.gallery-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.gallery-thumb {
+  position: relative;
+  height: 110px;
+  overflow: hidden;
+
+  border: 1px solid rgba(160, 210, 250, .2);
+  border-radius: 14px;
+
+  background: #06111f;
+  cursor: pointer;
+
+  opacity: .55;
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease,
+    border-color .3s ease;
+}
+
+.gallery-thumb:hover {
+  opacity: .85;
+  transform: translateY(-3px);
+}
+
+.gallery-thumb.active {
+  opacity: 1;
+  border-color: rgba(180, 225, 255, .75);
+  box-shadow: 0 0 25px rgba(110, 190, 255, .12);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumb span {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
-  padding: 12px;
-  background: linear-gradient(transparent, rgba(0,0,0,.75));
+
+  padding: 25px 10px 9px;
+
+  background: linear-gradient(
+    transparent,
+    rgba(0,0,0,.8)
+  );
+
+  color: white;
+  font: 500 9px var(--serif);
+  letter-spacing: 1px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+  .gallery-slider {
+    height: 65vh;
+    min-height: 430px;
+    border-radius: 18px;
+  }
+
+  .gallery-caption {
+    left: 25px;
+    right: 25px;
+    bottom: 75px;
+  }
+
+  .gallery-caption h2 {
+    font-size: 50px;
+  }
+
+  .gallery-caption p {
+    font-size: 12px;
+  }
+
+  .gallery-arrow {
+    width: 43px;
+    height: 43px;
+    font-size: 20px;
+  }
+
+  .gallery-arrow.prev {
+    left: 12px;
+  }
+
+  .gallery-arrow.next {
+    right: 12px;
+  }
+
+  .gallery-thumbnails {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-thumb {
+    height: 90px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-slide,
+  .gallery-slide.active img,
+  .gallery-arrow,
+  .gallery-dot,
+  .gallery-thumb {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 </style>
 
 </head>
-<body>
-<header class="site-header">
-  <a class="brand" href="index.html" aria-label="Rain Ghosts Startseite">
-    <span class="brand-logo"><img src="assets/logo.png" alt="Rain Ghosts Logo"></span>
-    <span class="brand-text">
-      <strong>Rain Ghosts</strong>
-      <small>✦ STAR STABLE CLUB ✦</small>
-    </span>
-  </a>
- <nav class="nav" aria-label="Hauptnavigation">
-      <a href="index.html">Home</a>
-      <a href="ueber-uns.html">Über uns</a>
-      <a href="club.html">Der Club</a>
-      <a class="active" href="galerie.html">Galerie</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
 
-  <a class="join-button" href="bewerbung.html"><span>♞</span> Jetzt beitreten</a>
-  <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
+<body>
+
+<header class="site-header">
+
+  <a class="brand" href="index.html" aria-label="Rain Ghosts Startseite">
+    <span class="brand-logo">
+      <img src="assets/logo.png" alt="Rain Ghosts Logo">
+    </span>
+
+```
+<span class="brand-text">
+  <strong>Rain Ghosts</strong>
+  <small>✦ STAR STABLE CLUB ✦</small>
+</span>
+```
+
+  </a>
+
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a href="index.html">Home</a>
+    <a href="ueber-uns.html">Über uns</a>
+    <a href="club.html">Der Club</a>
+    <a class="active" href="galerie.html">Galerie</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+
+  <a class="join-button" href="bewerbung.html">
+    <span>♞</span> Jetzt beitreten
+  </a>
+
+  <button class="menu-toggle" aria-label="Menü öffnen">
+    ☰
+  </button>
+
 </header>
+
 <section class="subpage-hero">
-  <!-- HEADER-BILD: Ersetze assets/header.jpg durch dein gewünschtes Bild -->
+
   <div class="header-image" aria-hidden="true">
- <img src="assets/clubheader.png" alt="">
+    <img src="assets/clubheader.png" alt="">
   </div>
+
   <div>
     <p class="section-kicker">UNSERE SCHÖNSTEN MOMENTE</p>
     <h1>Galerie</h1>
     <p>Ein kleiner Einblick in unsere Abenteuer auf Jorvik.</p>
   </div>
+
 </section>
 
-<main class="page-container">
-  <div class="gallery-full">
-    <div class="gallery-tile large">
-      <img src="assets/logo.png" alt="Club Logo">
-      <span>Rain Ghosts</span>
-    </div>
+<main class="page-container gallery-page">
 
-    <div class="gallery-tile scene scene-1">
-      <img src="assets/header.png" alt="Gemeinsame Ausritte">
-      <span>Herz für euch</span>
-    </div>
+  <div class="gallery-intro">
 
-    <div class="gallery-tile scene scene-2">
-      <img src="assets/clubheader.png" alt="Club Events">
-      <span>Championate Zusammen</span>
-    </div>
+```
+<p class="section-kicker">
+  RAIN GHOSTS MEMORIES
+</p>
 
-   
+<h2>Momente, die bleiben.</h2>
+
+<p>
+  Von gemeinsamen Ausritten bis zu besonderen Clubabenden —
+  hier sammeln wir unsere schönsten Erinnerungen.
+</p>
+```
+
   </div>
+
+  <section class="gallery-slider" aria-label="Rain Ghosts Galerie">
+
+```
+<!-- SLIDE 1 -->
+
+<article class="gallery-slide active">
+
+  <img
+    src="assets/clubbild1.jpg"
+    alt="Rain Ghosts Club Logo"
+  >
+
+  <div class="gallery-caption">
+
+    <p class="kicker">
+      RAIN GHOSTS
+    </p>
+
+    <h2>Unsere Familie</h2>
+
+    <p>
+      Gemeinsam unterwegs, gemeinsam stärker.
+      Jeder Moment macht unsere Geschichte ein Stück größer.
+    </p>
+
+  </div>
+
+</article>
+
+
+<!-- SLIDE 2 -->
+
+<article class="gallery-slide">
+
+  <img
+    src="assets/clubbild2.jpg"
+    alt="Gemeinsame Ausritte"
+  >
+
+  <div class="gallery-caption">
+
+    <p class="kicker">
+      GEMEINSAME ABENTEUER
+    </p>
+
+    <h2>Herz für euch</h2>
+
+    <p>
+      Die schönsten Momente entstehen,
+      wenn wir gemeinsam durch Jorvik reiten.
+    </p>
+
+  </div>
+
+</article>
+
+
+<!-- SLIDE 3 -->
+
+<article class="gallery-slide">
+
+  <img
+    src="assets/clubbild3.jpg"
+    alt="Rain Ghosts Club Event"
+  >
+
+  <div class="gallery-caption">
+
+    <p class="kicker">
+      CLUB EVENTS
+    </p>
+
+    <h2>Zusammen</h2>
+
+    <p>
+      Events, Championate und kleine Abenteuer —
+      Hauptsache, wir erleben sie gemeinsam.
+    </p>
+
+  </div>
+
+</article>
+
+
+<!-- ARROWS -->
+
+<button
+  class="gallery-arrow prev"
+  type="button"
+  aria-label="Vorheriges Bild"
+>
+  ‹
+</button>
+
+<button
+  class="gallery-arrow next"
+  type="button"
+  aria-label="Nächstes Bild"
+>
+  ›
+</button>
+
+
+<!-- COUNTER -->
+
+<div class="gallery-counter">
+  <span id="galleryCurrent">01</span>
+  /
+  <span id="galleryTotal">03</span>
+</div>
+
+
+<!-- DOTS -->
+
+<div class="gallery-controls">
+
+  <button
+    class="gallery-dot active"
+    type="button"
+    aria-label="Bild 1 anzeigen"
+  ></button>
+
+  <button
+    class="gallery-dot"
+    type="button"
+    aria-label="Bild 2 anzeigen"
+  ></button>
+
+  <button
+    class="gallery-dot"
+    type="button"
+    aria-label="Bild 3 anzeigen"
+  ></button>
+
+</div>
+
+
+<!-- PROGRESS -->
+
+<div class="gallery-progress">
+  <div class="gallery-progress-bar"></div>
+</div>
+```
+
+  </section>
+
+  <!-- THUMBNAILS -->
+
+  <div class="gallery-thumbnails">
+
+```
+<button class="gallery-thumb active" type="button">
+
+  <img
+    src="assets/logo.png"
+    alt="Rain Ghosts"
+  >
+
+  <span>Unsere Familie</span>
+
+</button>
+
+
+<button class="gallery-thumb" type="button">
+
+  <img
+    src="assets/header.png"
+    alt="Gemeinsame Ausritte"
+  >
+
+  <span>Herz für euch</span>
+
+</button>
+
+
+<button class="gallery-thumb" type="button">
+
+  <img
+    src="assets/clubheader.png"
+    alt="Club Events"
+  >
+
+  <span>Zusammen</span>
+
+</button>
+```
+
+  </div>
+
 </main>
+
 <footer class="footer">
+
   <div class="socials">
-      <a href="https://www.instagram.com/rain.ghostsofficial/" aria-label="Instagram">📷</a>
-    <a href="#" aria-label="YouTube">▶</a>
-    <a href="https://www.tiktok.com/@sso.rainghosts?is_from_webapp=1&sender_device=pc" aria-label="TikTok">♪</a>
+
+```
+<a
+  href="https://www.instagram.com/rain.ghostsofficial/"
+  aria-label="Instagram"
+>
+  📷
+</a>
+
+<a href="#" aria-label="YouTube">
+  ▶
+</a>
+
+<a
+  href="https://www.tiktok.com/@sso.rainghosts?is_from_webapp=1&sender_device=pc"
+  aria-label="TikTok"
+>
+  ♪
+</a>
+```
+
   </div>
-  <div class="footer-mark"><img src="assets/logo.png" alt=""></div>
-  <p class="quote">“Together we ride,<br>stronger we are.”</p>
-  <p class="copyright">© 2026 Rain Ghosts · Star Stable Club</p>
+
+  <div class="footer-mark">
+    <img src="assets/logo.png" alt="">
+  </div>
+
+  <p class="quote">
+    “Together we ride,<br>
+    stronger we are.”
+  </p>
+
+  <p class="copyright">
+    © 2026 Rain Ghosts · Star Stable Club
+  </p>
+
 </footer>
+
 <script>
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.nav');
-  if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('open'));
-  document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+
+/* =========================================================
+   GALERIE SLIDESHOW
+   ========================================================= */
+
+const slides = document.querySelectorAll('.gallery-slide');
+const dots = document.querySelectorAll('.gallery-dot');
+const thumbs = document.querySelectorAll('.gallery-thumb');
+
+const previousButton = document.querySelector('.gallery-arrow.prev');
+const nextButton = document.querySelector('.gallery-arrow.next');
+
+const currentCounter = document.getElementById('galleryCurrent');
+const totalCounter = document.getElementById('galleryTotal');
+
+const progressBar = document.querySelector('.gallery-progress-bar');
+
+let currentSlide = 0;
+let autoplayTimer;
+
+const slideDuration = 7000;
+
+totalCounter.textContent = String(slides.length).padStart(2, '0');
+
+
+function showSlide(index) {
+
+  if (index < 0) {
+    index = slides.length - 1;
+  }
+
+  if (index >= slides.length) {
+    index = 0;
+  }
+
+  currentSlide = index;
+
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === currentSlide);
+  });
+
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
+  });
+
+
+  thumbs.forEach((thumb, i) => {
+    thumb.classList.toggle('active', i === currentSlide);
+  });
+
+
+  currentCounter.textContent =
+    String(currentSlide + 1).padStart(2, '0');
+
+
+  /* Reset progress animation */
+
+  progressBar.style.transition = 'none';
+  progressBar.style.width = '0%';
+
+  requestAnimationFrame(() => {
+
+    requestAnimationFrame(() => {
+
+      progressBar.style.transition =
+        `width ${slideDuration}ms linear`;
+
+      progressBar.style.width = '100%';
+
+    });
+
+  });
+
+}
+
+
+/* Next */
+
+function nextSlide() {
+
+  showSlide(currentSlide + 1);
+
+}
+
+
+/* Previous */
+
+function previousSlide() {
+
+  showSlide(currentSlide - 1);
+
+}
+
+
+/* Autoplay */
+
+function startAutoplay() {
+
+  clearInterval(autoplayTimer);
+
+  autoplayTimer = setInterval(() => {
+
+    nextSlide();
+
+  }, slideDuration);
+
+}
+
+
+/* Reset autoplay */
+
+function restartAutoplay() {
+
+  startAutoplay();
+
+}
+
+
+/* Arrow buttons */
+
+nextButton.addEventListener('click', () => {
+
+  nextSlide();
+  restartAutoplay();
+
+});
+
+
+previousButton.addEventListener('click', () => {
+
+  previousSlide();
+  restartAutoplay();
+
+});
+
+
+/* Dots */
+
+dots.forEach((dot, index) => {
+
+  dot.addEventListener('click', () => {
+
+    showSlide(index);
+    restartAutoplay();
+
+  });
+
+});
+
+
+/* Thumbnails */
+
+thumbs.forEach((thumb, index) => {
+
+  thumb.addEventListener('click', () => {
+
+    showSlide(index);
+    restartAutoplay();
+
+  });
+
+});
+
+
+/* Keyboard navigation */
+
+document.addEventListener('keydown', (event) => {
+
+  if (event.key === 'ArrowRight') {
+
+    nextSlide();
+    restartAutoplay();
+
+  }
+
+  if (event.key === 'ArrowLeft') {
+
+    previousSlide();
+    restartAutoplay();
+
+  }
+
+});
+
+
+/* Pause while mouse is over gallery */
+
+const gallery = document.querySelector('.gallery-slider');
+
+gallery.addEventListener('mouseenter', () => {
+
+  clearInterval(autoplayTimer);
+
+});
+
+
+gallery.addEventListener('mouseleave', () => {
+
+  startAutoplay();
+
+});
+
+
+/* Touch / Swipe */
+
+let touchStartX = 0;
+
+gallery.addEventListener('touchstart', (event) => {
+
+  touchStartX = event.changedTouches[0].screenX;
+
+}, { passive: true });
+
+
+gallery.addEventListener('touchend', (event) => {
+
+  const touchEndX =
+    event.changedTouches[0].screenX;
+
+  const difference =
+    touchStartX - touchEndX;
+
+
+  if (Math.abs(difference) < 50) {
+    return;
+  }
+
+
+  if (difference > 0) {
+
+    nextSlide();
+
+  } else {
+
+    previousSlide();
+
+  }
+
+
+  restartAutoplay();
+
+}, { passive: true });
+
+
+/* Initial */
+
+showSlide(0);
+startAutoplay();
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+const toggle =
+  document.querySelector('.menu-toggle');
+
+const nav =
+  document.querySelector('.nav');
+
+
+if (toggle) {
+
+  toggle.addEventListener('click', () => {
+
+    nav.classList.toggle('open');
+
+  });
+
+}
+
+
+document
+  .querySelectorAll('.nav a')
+  .forEach(link => {
+
+    link.addEventListener('click', () => {
+
+      nav.classList.remove('open');
+
+    });
+
+  });
+
 </script>
+
 </body>
 </html>
