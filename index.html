@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rain Ghosts – Star Stable Club">
+  <title>Rain Ghosts | Star Stable Club</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Zusätzliche Startseiten-Elemente */
+    .home-story,
+    .home-gallery,
+    .home-values,
+    .home-final {
+      padding: 90px 6vw;
+    }
+
+    .story-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .story-image {
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: 18px;
+      position: relative;
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-image span {
+      position: absolute;
+      left: 25px;
+      bottom: 22px;
+      font-family: "Cinzel", serif;
+      font-size: 1rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .story-card {
+      padding: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story-card h2 {
+      margin: 8px 0 22px;
+    }
+
+    .story-card p {
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .image-band {
+      max-width: 1200px;
+      height: 390px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 18px;
+      position: relative;
+    }
+
+    .image-band img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.12));
+    }
+
+    .image-band-content {
+      position: absolute;
+      z-index: 2;
+      left: 7%;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 570px;
+    }
+
+    .image-band-content h2 {
+      margin: 8px 0 15px;
+    }
+
+    .image-band-content p {
+      line-height: 1.8;
+    }
+
+    .values-heading {
+      max-width: 760px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .values-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .value-card {
+      overflow: hidden;
+      padding-bottom: 30px;
+    }
+
+    .value-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .value-card-content {
+      padding: 25px 28px 0;
+      text-align: center;
+    }
+
+    .value-card h3 {
+      margin: 8px 0 12px;
+    }
+
+    .value-card p {
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .mini-gallery {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      grid-template-rows: 230px 230px;
+      gap: 18px;
+    }
+
+    .mini-gallery a {
+      display: block;
+      overflow: hidden;
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .mini-gallery a:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .mini-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .mini-gallery a:hover img {
+      transform: scale(1.05);
+    }
+
+    .mini-gallery span {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      z-index: 2;
+      font-family: "Cinzel", serif;
+      font-size: .85rem;
+      letter-spacing: .08em;
+    }
+
+    .final-card {
+      max-width: 1200px;
+      min-height: 360px;
+      margin: auto;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px;
+      background:
+        linear-gradient(rgba(10,10,18,.72), rgba(10,10,18,.82)),
+        url("assets/clubheader.png") center/cover;
+    }
+
+    .final-card-content {
+      max-width: 700px;
+    }
+
+    .final-card h2 {
+      margin: 10px 0 18px;
+    }
+
+    .final-card p {
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 850px) {
+      .story-grid,
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-image {
+        min-height: 360px;
+      }
+
+      .mini-gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 180px 180px;
+      }
+
+      .mini-gallery a:first-child {
+        grid-column: 1 / 3;
+        grid-row: 1;
+      }
+
+      .image-band {
+        height: 430px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .home-story,
+      .home-gallery,
+      .home-values,
+      .home-final {
+        padding: 65px 5vw;
+      }
+
+      .story-card {
+        padding: 35px 25px;
+      }
+
+      .mini-gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 220px);
+      }
+
+      .mini-gallery a:first-child {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-glow"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Rain Ghosts Startseite">
+      <span class="brand-logo">
+        <img src="assets/logo.png" alt="Rain Ghosts Logo">
+      </span>
+      <span class="brand-text">
+        <strong>Rain Ghosts</strong>
+        <small>✦ STAR STABLE CLUB ✦</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="active" href="#home">Home</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="club.html">Der Club</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <a class="join-button" href="bewerbung.html">
+      <span>♞</span> Jetzt beitreten
+    </a>
+
+    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="header-image" aria-hidden="true">
+        <img src="assets/clubheader.png" alt="">
+      </div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow">EIN CLUB • EINE GEMEINSCHAFT • EINE LEIDENSCHAFT</p>
+        <h1>Willkommen bei<br><span>Rain Ghosts</span></h1>
+        <div class="ornament">✦ ───────── ✦ ───────── ✦</div>
+        <p class="hero-copy">
+          Wo aus gemeinsamen Ausritten Erinnerungen werden
+          und aus einzelnen Reitern eine Gemeinschaft.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#story">Entdecke Rain Ghosts <span>↓</span></a>
+          <a class="button ghost" href="bewerbung.html">Jetzt beitreten</a>
+        </div>
+      </div>
+
+      <div class="hero-horse" aria-hidden="true">
+        <div class="horse-aura"></div>
+        <img src="assets/logo.png" alt="">
+      </div>
+
+      <div class="scroll-hint">SCROLL <span>↓</span></div>
+    </section>
+
+    <section class="home-story" id="story">
+      <div class="story-grid">
+        <div class="story-image">
+          <img src="assets/ghost.JPG" alt="Rain Ghosts">
+          <span>Rain Ghosts</span>
+        </div>
+
+        <article class="story-card glass-card">
+          <p class="section-kicker">UNSER SPIRIT</p>
+          <h2>Gemeinsam ist jedes Abenteuer schöner.</h2>
+          <div class="mini-line">✦ ─── ✦</div>
+
+          <p>
+            Rain Ghosts ist ein Ort für Menschen, die ihre Liebe zu Pferden,
+            Star Stable und gemeinsamen Erlebnissen teilen.
+          </p>
+
+          <p>
+            Hier geht es nicht darum, wer am schnellsten oder am besten ist.
+            Es geht um die Momente dazwischen: zusammen lachen, losreiten,
+            Neues entdecken und Erinnerungen schaffen.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-gallery">
+      <div class="image-band">
+        <img src="assets/header.png" alt="Gemeinsamer Moment auf Jorvik">
+
+        <div class="image-band-content">
+          <p class="section-kicker">DIE MOMENTE DAZWISCHEN</p>
+          <h2>Jeder Ausritt kann eine Geschichte werden.</h2>
+          <p>
+            Manchmal braucht es keinen besonderen Anlass.
+            Ein gemeinsamer Ausritt, ein langer Abend auf Jorvik
+            oder einfach Zeit miteinander reicht.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-values">
+      <div class="values-heading">
+        <p class="section-kicker">WAS RAIN GHOSTS AUSMACHT</p>
+        <h2>Zusammenhalt. Herz. Abenteuer.</h2>
+        <div class="mini-line">✦ ─── ✦</div>
+      </div>
+
+      <div class="values-grid">
+        <article class="value-card glass-card">
+          <img src="assets/clubheader.png" alt="Gemeinschaft bei Rain Ghosts">
+          <div class="value-card-content">
+            <span class="feature-icon">♞</span>
+            <h3>Zusammenhalt</h3>
+            <p>
+              Niemand muss allein unterwegs sein.
+              Wir freuen uns über gemeinsame Momente und gegenseitige Unterstützung.
+            </p>
+          </div>
+        </article>
+
+        <article class="value-card glass-card">
+          <img src="assets/ghost.JPG" alt="Rain Ghosts Logo und Clubmoment">
+          <div class="value-card-content">
+            <span class="feature-icon">♡</span>
+            <h3>Herz</h3>
+            <p>
+              Hinter dem Namen Rain Ghosts stehen Menschen,
+              Pferde und eine Gemeinschaft mit viel Leidenschaft.
+            </p>
+          </div>
+        </article>
+
+        <article class="value-card glass-card">
+          <img src="assets/header.png" alt="Gemeinsamer Ausritt">
+          <div class="value-card-content">
+            <span class="feature-icon">☆</span>
+            <h3>Abenteuer</h3>
+            <p>
+              Neue Wege, gemeinsame Ausritte und spontane Ideen –
+              langweilig wird es auf Jorvik mit uns nicht.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-gallery">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">EIN KLEINER EINBLICK</p>
+          <h2>Unsere Welt</h2>
+        </div>
+        <a href="galerie.html">Zur Galerie →</a>
+      </div>
+
+      <div class="mini-gallery">
+        <a href="galerie.html" aria-label="Galerie Rain Ghosts">
+          <img src="assets/clubheader.png" alt="Rain Ghosts">
+          <span>Gemeinsam unterwegs</span>
+        </a>
+
+        <a href="galerie.html" aria-label="Galerie">
+          <img src="assets/header.png" alt="Gemeinsamer Ausritt">
+          <span>Jorvik</span>
+        </a>
+
+        <a href="galerie.html" aria-label="Galerie">
+          <img src="assets/ghost.JPG" alt="Rain Ghosts">
+          <span>Unsere Momente</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-final">
+      <div class="final-card">
+        <div class="final-card-content">
+          <p class="section-kicker">DEINE GESCHICHTE KÖNNTE HIER BEGINNEN</p>
+          <h2>Vielleicht fehlst nur noch du.</h2>
+          <p>
+            Schau dich um, lerne Rain Ghosts kennen und finde heraus,
+            ob du Teil unserer Gemeinschaft werden möchtest.
+          </p>
+          <a class="button primary" href="bewerbung.html">
+            ♞ Jetzt beitreten
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="socials">
+      <a href="https://www.instagram.com/rain.ghostsofficial/" aria-label="Instagram">◎</a>
+      <a href="#" aria-label="Discord">◉</a>
+      <a href="#" aria-label="YouTube">▶</a>
+      <a href="#" aria-label="TikTok">♪</a>
+    </div>
+
+    <div class="footer-mark">
+      <img src="assets/logo.png" alt="">
+    </div>
+
+    <p class="quote">“Together we ride,<br>stronger we are.”</p>
+    <p class="copyright">© 2026 Rain Ghosts · Star Stable Club</p>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => nav.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
